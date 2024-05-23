@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
 @Component({
   selector: "app-connect-api",
@@ -21,7 +21,7 @@ export class ConnectApiComponent implements OnInit {
   }
 
   send() {
-    const body = { name: this.name, value: this.value };
+    //const body = { name: this.name, value: this.value };
 
     /*        this.http.post(this.apiUrl, body).pipe(
           (response) => {
@@ -32,19 +32,20 @@ export class ConnectApiComponent implements OnInit {
           }
         );
  */
-    this.http
-      .post<any>(
-        this.apiUrl + "?name=" + this.name + "&value=" + this.value,
-        body
-      )
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-        },
-        error: (error) => {
-          /* this.errorMessage = error.message; */
-          console.error("There was an error!", error);
-        },
-      });
+    const params = new HttpParams()
+      .set("name", this.name)
+      .set("value", this.value);
+
+    // this.apiUrl + "?name=" + this.name + "&value=" + this.value,
+
+    this.http.post<string>(this.apiUrl, params).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (error) => {
+        /* this.errorMessage = error.message; */
+        console.error("There was an error!", error);
+      },
+    });
   }
 }

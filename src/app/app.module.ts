@@ -6,9 +6,10 @@ import { AppComponent } from "./app.component";
 import { ConnectApiComponent } from "./connect-api/connect-api.component";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { TaskListComponent } from './task-list/task-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ConnectApiComponent],
+  declarations: [AppComponent, ConnectApiComponent, TaskListComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
